@@ -16,9 +16,12 @@
   </form>
   <div id="recipeContainer" class="hidden">
 
-    <!-- If no recipe yet, show: -->
+    
+    <!-- Se ainda não tiver receita, mostre: -->
+     <% if(locals.data) {%>
     <h2>Pick your favourite taco ingredient 👆</h2>
-    <!-- Else, show the recipe name e.g. <h2>Recipe name</h2>-->
+    
+    <!-- Caso contrário, mostre o nome da receita, por exemplo. <h2>Nome da receita</h2>-->
 
     <h3>Ingredients:</h3>
     <ul id="ingredientsList">

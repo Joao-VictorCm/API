@@ -44,6 +44,12 @@ app.post("/", async (req, res) => {
   // Etapa 3: se você receber um erro 404 (recurso não encontrado) na solicitação da API.
   // Passa um erro para index.ejs para informar ao usuário:
   // "Nenhuma atividade que corresponda aos seus critérios."
+  const type = req.body["type"]
+  const participants = req.body["participants"]
+  console.log("aqui" + type + participants)
+
+  // const response = await axios.get(`https://bored-api.appbrewery.com/filter?type=${type}/participants=${participants}`)
+  console.log(response)
 });
 
 app.listen(port, () => {

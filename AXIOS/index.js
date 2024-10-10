@@ -16,9 +16,10 @@ app.use(
 );
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Step 1: Make sure that when a user visits the home page,
-//   it shows a random activity.You will need to check the format of the
-//   JSON data from response.data and edit the index.ejs file accordingly.
+// Etapa 1: certifique-se de que quando um usuário visitar a página inicial,
+// mostra uma atividade aleatória. Você precisará verificar o formato do
+// Dados JSON de response.data e edite o arquivo index.ejs de acordo.
+
 app.get("/", async (req, res) => {
   try {
     const response = await axios.get("https://bored-api.appbrewery.com/random");
@@ -35,14 +36,14 @@ app.get("/", async (req, res) => {
 app.post("/", async (req, res) => {
   console.log(req.body);
 
-  // Step 2: Play around with the drop downs and see what gets logged.
-  // Use axios to make an API request to the /filter endpoint. Making
-  // sure you're passing both the type and participants queries.
-  // Render the index.ejs file with a single *random* activity that comes back
-  // from the API request.
-  // Step 3: If you get a 404 error (resource not found) from the API request.
-  // Pass an error to the index.ejs to tell the user:
-  // "No activities that match your criteria."
+  // Passo 2: Experimente os menus suspensos e veja o que é registrado.
+  // Use axios para fazer uma solicitação de API para o endpoint /filter. Fazendo
+  // certeza de que você está passando as consultas de tipo e de participantes.
+  // Renderiza o arquivo index.ejs com uma única atividade *aleatória* que retorna
+  // da solicitação da API.
+  // Etapa 3: se você receber um erro 404 (recurso não encontrado) na solicitação da API.
+  // Passa um erro para index.ejs para informar ao usuário:
+  // "Nenhuma atividade que corresponda aos seus critérios."
 });
 
 app.listen(port, () => {

@@ -5,7 +5,15 @@ import axios from "axios";
 const app = express();
 const port = 3000;
 
-app.use(express.static("public"));
+app.use(
+  express.static("public", {
+    setHeaders: (res, path) => {
+      if (path.endsWith(".css")) {
+        res.set("Content-Type", "text/css");
+      }
+    },
+  })
+);
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Step 1: Make sure that when a user visits the home page,

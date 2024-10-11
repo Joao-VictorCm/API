@@ -34,24 +34,24 @@ app.get("/", async (req, res) => {
 });
 
 app.post("/", async (req, res) => {
-  console.log(req.body);
-
-  // Passo 2: Experimente os menus suspensos e veja o que é registrado.
-  // Use axios para fazer uma solicitação de API para o endpoint /filter. Fazendo
-  // certeza de que você está passando as consultas de tipo e de participantes.
-  // Renderiza o arquivo index.ejs com uma única atividade *aleatória* que retorna
-  // da solicitação da API.
-  // Etapa 3: se você receber um erro 404 (recurso não encontrado) na solicitação da API.
-  // Passa um erro para index.ejs para informar ao usuário:
-  // "Nenhuma atividade que corresponda aos seus critérios."
-  const type = req.body["type"]
-  const participants = req.body["participants"]
-  console.log("aqui" + type + participants)
-
-  const response = await axios.get(`https://bored-api.appbrewery.com/filter?type=${type}&participants=${participants}`)
-  const result = response.data;
-  res.render("index.ejs", { data: result });
-  console.log(response)
+  try {
+    console.log(req.body);
+    const type = req.body.type;
+    const participants = req.body.participants;
+    const response = await axios.get(
+      `https://bored-api.appbrewery.com/filter?type=${type}&participants=${participants}`
+    );
+    const result = response.data;
+    console.log(result);
+    res.render("index.ejs", {
+      data: result[Math.floor(Math.random() * result.length)],
+    });
+  } catch (error) {
+    console.error("Failed to make request:", error.message);
+    res.render("index.ejs", {
+      error: "No activities that match your criteria.",
+    });
+  }
 });
 
 app.listen(port, () => {

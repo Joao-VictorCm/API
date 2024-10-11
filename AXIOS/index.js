@@ -48,7 +48,9 @@ app.post("/", async (req, res) => {
   const participants = req.body["participants"]
   console.log("aqui" + type + participants)
 
-  // const response = await axios.get(`https://bored-api.appbrewery.com/filter?type=${type}/participants=${participants}`)
+  const response = await axios.get(`https://bored-api.appbrewery.com/filter?type=${type}&participants=${participants}`)
+  const result = response.data;
+  res.render("index.ejs", { data: result });
   console.log(response)
 });
 
